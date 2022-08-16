@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.demo.Controller">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+   <children>
+      <Button fx:id="SearchButton" layoutX="18.0" layoutY="115.0" mnemonicParsing="false" onAction="#SearchButtonEvent" text="Buscar Archivo " textAlignment="CENTER">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="Notas" layoutX="18.0" layoutY="282.0" prefHeight="328.0" prefWidth="565.0" />
+      <ListView fx:id="Archivos" layoutX="147.0" layoutY="29.0" prefHeight="200.0" prefWidth="439.0" />
+   </children>
+</AnchorPane>
