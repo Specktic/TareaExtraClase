@@ -19,5 +19,6 @@ public class Main extends Application { // clase main con el constructor de la a
 
     public static void main(String[] args) {
         launch();
+
     }
 }

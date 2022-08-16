@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Controller {
     @FXML
@@ -27,6 +31,33 @@ public class Controller {
 
         if (archivoselec != null) {
             Archivos.getItems().add(archivoselec.getName());
+            String path = (archivoselec.getAbsolutePath());
+
+            BufferedReader lector = null;
+            String linea = " ";
+
+            try {
+                lector = new BufferedReader(new FileReader(path));
+                while ((linea = lector.readLine()) != null) {
+
+                    String[] fila = linea.split(",");
+
+                    for(String indice : fila) {
+                        System.out.printf("%-10s", indice);
+                    }
+                    System.out.println();
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    lector.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             System.out.println("Archivo Invalido");
         }
