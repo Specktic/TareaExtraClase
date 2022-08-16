@@ -35,17 +35,24 @@ public class Controller {
 
             BufferedReader lector = null;
             String linea = " ";
+            byte NumLinea = -1;
 
             try {
                 lector = new BufferedReader(new FileReader(path));
                 while ((linea = lector.readLine()) != null) {
 
+                    NumLinea += 1;
+
                     String[] fila = linea.split(",");
 
                     for(String indice : fila) {
-                        System.out.printf("%-10s", indice);
+                        System.out.printf("%-20s", indice);
+
                     }
                     System.out.println();
+
+                    Notas.appendText(linea);
+                    Notas.appendText("\n");
                 }
             }
             catch (Exception e) {
@@ -61,6 +68,10 @@ public class Controller {
         } else {
             System.out.println("Archivo Invalido");
         }
+
+        }
+
+        public void TextAreaDisplay() {
 
         }
 }
