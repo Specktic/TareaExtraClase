@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -76,21 +77,32 @@ public class Controller implements Initializable {
                     String[] valores = linea.split(";");
 
                     Estudiante E = new Estudiante();
+
                     E.setCarnet(valores[0]);
                     E.setNombre(valores[1]);
                     E.setCorreo(valores[2]);
                     E.setTelefono(valores[3]);
                     E.setNick(valores[4]);
                     E.setTipo(valores[5]);
-                    E.setExamenes(valores[6]);
-                    E.setQuices(valores[7]);
-                    E.setTareas(valores[8]);
-                    E.setProyecto1(valores[9]);
-                    E.setProyecto2(valores[10]);
-                    E.setProyecto3(valores[11]);
-                    E.CalcNotaFinalA(valores[6], valores[7], valores[8]);
-                    E.CalcNotaFinalB(valores[9], valores[10], valores[11]);
-                    E.CalcNotaFinalP(valores[6], valores[7], valores[8], valores[9], valores[10], valores[3]);
+                    E.setExamenes(Integer.parseInt(valores[6]));
+                    E.setQuices(Integer.parseInt(valores[7]));
+                    E.setTareas(Integer.parseInt(valores[8]));
+                    E.setProyecto1(Integer.parseInt(valores[9]));
+                    E.setProyecto2(Integer.parseInt(valores[10]));
+                    E.setProyecto3(Integer.parseInt(valores[11]));
+                    if (Objects.equals(E.getTipo(), "A")) {
+                        E.CalcNotaFinalA(Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
+                    }
+                    else {
+                        E.CalcNotaFinalA(0,0,0);
+                    }
+                    if (Objects.equals(E.getTipo(), "B")) {
+                        E.CalcNotaFinalB(Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
+                    }
+                    else {
+                        E.CalcNotaFinalB(0, 0, 0);
+                    }
+                    E.CalcNotaFinalP(Integer.parseInt(valores[6]), Integer.parseInt(valores[7]), Integer.parseInt(valores[8]), Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
 
                     for(String indice : valores) {
                         System.out.printf("%-30s", indice); // printf es un metodo sobrecargado de la clase PrintStream
@@ -112,27 +124,28 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
             }
-        } else {
+        }
+        else {
             System.out.println("Archivo Invalido");
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Carnet.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Carnet"));
-        Nombre.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Nombre"));
-        Correo.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Correo"));
-        Telefono.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Telefono"));
-        Nick.setCellValueFactory(new PropertyValueFactory<Estudiante, String >("Nick"));
-        Tipo.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Tipo"));
-        //Examenes.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Examenes"));
-        Quices.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Quices"));
-        Tareas.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Tareas"));
-        Proyecto1.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Proyecto1"));
-        Proyecto2.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Proyecto2"));
-        Proyecto3.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Proyecto3"));
-        NotaFinalA.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("NotaFinalA"));
-        NotaFinalB.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("NotaFinalB"));
-        NotaFinalP.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("NotaFinalP"));
+        Carnet.setCellValueFactory(new PropertyValueFactory<>("Carnet"));
+        Nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        Correo.setCellValueFactory(new PropertyValueFactory<>("Correo"));
+        Telefono.setCellValueFactory(new PropertyValueFactory<>("Telefono"));
+        Nick.setCellValueFactory(new PropertyValueFactory<>("Nick"));
+        Tipo.setCellValueFactory(new PropertyValueFactory<>("Tipo"));
+        Examenes.setCellValueFactory(new PropertyValueFactory<>("Examenes"));
+        Quices.setCellValueFactory(new PropertyValueFactory<>("Quices"));
+        Tareas.setCellValueFactory(new PropertyValueFactory<>("Tareas"));
+        Proyecto1.setCellValueFactory(new PropertyValueFactory<>("Proyecto1"));
+        Proyecto2.setCellValueFactory(new PropertyValueFactory<>("Proyecto2"));
+        Proyecto3.setCellValueFactory(new PropertyValueFactory<>("Proyecto3"));
+        NotaFinalA.setCellValueFactory(new PropertyValueFactory<>("NotaFinalA"));
+        NotaFinalB.setCellValueFactory(new PropertyValueFactory<>("NotaFinalB"));
+        NotaFinalP.setCellValueFactory(new PropertyValueFactory<>("NotaFinalP"));
     }
 }
