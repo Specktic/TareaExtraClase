@@ -18,41 +18,39 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    private Button SearchButton;
-    @FXML
     private ListView Archivos;
     @FXML
     private TableView<Estudiante> TablaNotas;
     @FXML
-    private TableColumn<Estudiante, Integer> Carnet;
+    private TableColumn<Estudiante, String> Carnet;
     @FXML
     private TableColumn<Estudiante, String> Nombre;
     @FXML
     private TableColumn<Estudiante, String> Correo;
     @FXML
-    private TableColumn<Estudiante, Integer> Telefono;
+    private TableColumn<Estudiante, String> Telefono;
     @FXML
     private TableColumn<Estudiante, String> Nick;
     @FXML
     private TableColumn<Estudiante, String> Tipo;
     @FXML
-    private TableColumn<Estudiante, Integer> Examenes;
+    private TableColumn<Estudiante, String> Examenes;
     @FXML
-    private TableColumn<Estudiante, Integer> Quices;
+    private TableColumn<Estudiante, String> Quices;
     @FXML
-    private TableColumn<Estudiante, Integer> Tareas;
+    private TableColumn<Estudiante, String> Tareas;
     @FXML
-    private TableColumn<Estudiante, Integer> Proyecto1;
+    private TableColumn<Estudiante, String> Proyecto1;
     @FXML
-    private TableColumn<Estudiante, Integer> Proyecto2;
+    private TableColumn<Estudiante, String> Proyecto2;
     @FXML
-    private TableColumn<Estudiante, Integer> Proyecto3;
+    private TableColumn<Estudiante, String> Proyecto3;
     @FXML
-    private TableColumn<Estudiante, Integer> NotaFinalA;
+    private TableColumn<Estudiante, String> NotaFinalA;
     @FXML
-    private TableColumn<Estudiante, Integer> NotaFinalB;
+    private TableColumn<Estudiante, String> NotaFinalB;
     @FXML
-    private TableColumn<Estudiante, Integer> NotaFinalP;
+    private TableColumn<Estudiante, String> NotaFinalP;
 
 
     public void SearchButtonEvent(ActionEvent event){
@@ -90,9 +88,9 @@ public class Controller implements Initializable {
                     E.setProyecto1(valores[9]);
                     E.setProyecto2(valores[10]);
                     E.setProyecto3(valores[11]);
-                    E.setNotaFinalA(valores[6], valores[7], valores[8]);
-                    E.setNotaFinalB(valores[9], valores[10], valores[11]);
-                    E.setNotaFinalP(valores[6], valores[7], valores[8], valores[9], valores[10], valores[3]);
+                    E.CalcNotaFinalA(valores[6], valores[7], valores[8]);
+                    E.CalcNotaFinalB(valores[9], valores[10], valores[11]);
+                    E.CalcNotaFinalP(valores[6], valores[7], valores[8], valores[9], valores[10], valores[3]);
 
                     for(String indice : valores) {
                         System.out.printf("%-30s", indice); // printf es un metodo sobrecargado de la clase PrintStream
@@ -121,20 +119,20 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Carnet.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Carnet"));
+        Carnet.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Carnet"));
         Nombre.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Nombre"));
         Correo.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Correo"));
-        Telefono.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Telefono"));
+        Telefono.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Telefono"));
         Nick.setCellValueFactory(new PropertyValueFactory<Estudiante, String >("Nick"));
         Tipo.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Tipo"));
-        Examenes.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Examenes"));
-        Quices.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Quices"));
-        Tareas.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Tareas"));
-        Proyecto1.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Proyecto1"));
-        Proyecto2.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Proyecto2"));
-        Proyecto3.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("Proyecto3"));
-        NotaFinalA.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("NotaFinalA"));
-        NotaFinalB.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("NotaFinalB"));
-        NotaFinalP.setCellValueFactory(new PropertyValueFactory<Estudiante, Integer>("NotaFinalP"));
+        //Examenes.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Examenes"));
+        Quices.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Quices"));
+        Tareas.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Tareas"));
+        Proyecto1.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Proyecto1"));
+        Proyecto2.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Proyecto2"));
+        Proyecto3.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("Proyecto3"));
+        NotaFinalA.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("NotaFinalA"));
+        NotaFinalB.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("NotaFinalB"));
+        NotaFinalP.setCellValueFactory(new PropertyValueFactory<Estudiante, String>("NotaFinalP"));
     }
 }
