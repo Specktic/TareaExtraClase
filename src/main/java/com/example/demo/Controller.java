@@ -76,33 +76,22 @@ public class Controller implements Initializable {
 
                     String[] valores = linea.split(";");
 
-                    Estudiante E = new Estudiante();
-
-                    E.setCarnet(valores[0]);
-                    E.setNombre(valores[1]);
-                    E.setCorreo(valores[2]);
-                    E.setTelefono(valores[3]);
-                    E.setNick(valores[4]);
-                    E.setTipo(valores[5]);
-                    E.setExamenes(Integer.parseInt(valores[6]));
-                    E.setQuices(Integer.parseInt(valores[7]));
-                    E.setTareas(Integer.parseInt(valores[8]));
-                    E.setProyecto1(Integer.parseInt(valores[9]));
-                    E.setProyecto2(Integer.parseInt(valores[10]));
-                    E.setProyecto3(Integer.parseInt(valores[11]));
-                    if (Objects.equals(E.getTipo(), "A")) {
-                        E.CalcNotaFinalA(Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
-                    }
-                    else {
-                        E.CalcNotaFinalA(0,0,0);
-                    }
-                    if (Objects.equals(E.getTipo(), "B")) {
-                        E.CalcNotaFinalB(Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
-                    }
-                    else {
-                        E.CalcNotaFinalB(0, 0, 0);
-                    }
-                    E.CalcNotaFinalP(Integer.parseInt(valores[6]), Integer.parseInt(valores[7]), Integer.parseInt(valores[8]), Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
+                    Estudiante E = new Estudiante(
+                            valores[0],
+                            valores[1],
+                            valores[2],
+                            valores[3],
+                            valores[4],
+                            valores[5],
+                            Integer.parseInt(valores[6]),
+                            Integer.parseInt(valores[7]),
+                            Integer.parseInt(valores[8]),
+                            Integer.parseInt(valores[9]),
+                            Integer.parseInt(valores[10]),
+                            Integer.parseInt(valores[11]),
+                            0,
+                            0,
+                            0);
 
                     for(String indice : valores) {
                         System.out.printf("%-30s", indice); // printf es un metodo sobrecargado de la clase PrintStream
