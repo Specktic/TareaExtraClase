@@ -16,20 +16,21 @@ public class Estudiante {
     protected int NotaFinal;
 
     public Estudiante(String carnet, String nombre, String correo, String telefono, String nick, String tipo, int examenes, int quices, int tareas, int proyecto1, int proyecto2, int proyecto3) {
-        Carnet = carnet;
-        Nombre = nombre;
-        Correo = correo;
-        Telefono = telefono;
-        Nick = nick;
-        Tipo = tipo;
-        Examenes = examenes;
-        Quices = quices;
-        Tareas = tareas;
-        Proyecto1 = proyecto1;
-        Proyecto2 = proyecto2;
-        Proyecto3 = proyecto3;
+        setCarnet(carnet);
+        setNombre(nombre);
+        setCorreo(correo);
+        setTelefono(telefono);
+        setNick(nick);
+        setTipo(tipo);
+        setExamenes(examenes);
+        setQuices(quices);
+        setTareas(tareas);
+        setProyecto1(proyecto1);
+        setProyecto2(proyecto2);
+        setProyecto3(proyecto3);
         setNotaFinal();
         NotaFinal = getNotaFinal();
+
     }
 
     public String getCarnet() {return Carnet;}
@@ -71,6 +72,37 @@ public class Estudiante {
     public int getNotaFinal(){ return NotaFinal;}
     public void setNotaFinal() {NotaFinal = (getExamenes() + getQuices() + getTareas() + getProyecto1() + getProyecto2() + getProyecto3()) / 6;}
 
-
+    public Estudiante TipoEstudiante(String tipo) {
+        if (tipo.equals("A")){
+            return new EstudianteA(
+                    getCarnet(),
+                    getNombre(),
+                    getCorreo(),
+                    getTelefono(),
+                    getNick(),
+                    getTipo(),
+                    getExamenes(),
+                    getQuices(),
+                    getTareas(),
+                    getProyecto1(),
+                    getProyecto2(),
+                    getProyecto3());
+        }
+        else {
+            return new EstudianteB(
+                    getCarnet(),
+                    getNombre(),
+                    getCorreo(),
+                    getTelefono(),
+                    getNick(),
+                    getTipo(),
+                    getExamenes(),
+                    getQuices(),
+                    getTareas(),
+                    getProyecto1(),
+                    getProyecto2(),
+                    getProyecto3());
+        }
+    }
 }
 

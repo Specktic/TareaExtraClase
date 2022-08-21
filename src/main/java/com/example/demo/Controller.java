@@ -2,7 +2,6 @@ package com.example.demo;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,10 +13,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller implements Initializable {      //se implementa la interfaz "Initializable" a la clase controlador
+                                                        //Las interfaces son una manera además de las clases abstractas de lograr la abstracción en java
     @FXML
     private ListView Archivos;
     @FXML
@@ -54,7 +53,7 @@ public class Controller implements Initializable {
     private TableColumn<Estudiante, String> NotaFinal;
 
 
-    public void SearchButtonEvent(ActionEvent event){
+    public void SearchButtonEvent(){
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File("C:\\Users\\mavic\\Desktop\\Marco\\Datos\\Tarea extra clase\\Archivos CSV"));
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv"));
@@ -66,76 +65,36 @@ public class Controller implements Initializable {
 
             BufferedReader lector = null;
             String linea;
+            int numlinea = 0;
 
             try {
 
                 lector = new BufferedReader(new FileReader(path));
                 ObservableList<Estudiante> list = FXCollections.observableArrayList();
 
-                while ((linea = lector.readLine()) != null) {
+                while ((linea = lector.readLine()) != null){
 
-                    String[] valores = linea.split(";");
+                    if (numlinea == 1){
+                        String[] valores = linea.split(";");
 
-                    Estudiante E = new Estudiante(
-                            valores[0],
-                            valores[1],
-                            valores[2],
-                            valores[3],
-                            valores[4],
-                            valores[5],
-                            Integer.parseInt(valores[6]),
-                            Integer.parseInt(valores[7]),
-                            Integer.parseInt(valores[8]),
-                            Integer.parseInt(valores[9]),
-                            Integer.parseInt(valores[10]),
-                            Integer.parseInt(valores[11]));
+                        Estudiante E = new Estudiante(valores[0], valores[1], valores[2], valores[3], valores[4], valores[5], Integer.parseInt(valores[6]), Integer.parseInt(valores[7]), Integer.parseInt(valores[8]), Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
+                        list.add(E.TipoEstudiante(valores[5]));
 
-                    for(String indice : valores) {
-                        System.out.printf("%-30s", indice); // printf es un metodo sobrecargado de la clase PrintStream
-                        }
+                        for(String indice : valores) {System.out.printf("%-30s", indice);} // printf es un metodo sobrecargado de la clase PrintStream
 
-                    if (valores[5].equals("A")) {
-                        EstudianteA EA = new EstudianteA(
-                                E.getCarnet(),
-                                E.getNombre(),
-                                E.getCorreo(),
-                                E.getTelefono(),
-                                E.getNick(),
-                                E.getTipo(),
-                                E.getExamenes(),
-                                E.getQuices(),
-                                E.getTareas(),
-                                E.getProyecto1(),
-                                E.getProyecto2(),
-                                E.getProyecto3());
-                        list.add(EA);
+                        TablaNotas.setItems(list);
+                        System.out.println();
                     }
-                    else {
-                        EstudianteB EB = new EstudianteB(
-                                E.getCarnet(),
-                                E.getNombre(),
-                                E.getCorreo(),
-                                E.getTelefono(),
-                                E.getNick(),
-                                E.getTipo(),
-                                E.getExamenes(),
-                                E.getQuices(),
-                                E.getTareas(),
-                                E.getProyecto1(),
-                                E.getProyecto2(),
-                                E.getProyecto3());
-                        list.add(EB);
-                    }
-
-                    TablaNotas.setItems(list);
-                    System.out.println();
+                    else {numlinea ++;}
                 }
+
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
             finally {
                 try {
+                    assert lector != null;  //Evita un error al cerrar el lector en caso de que no exista uno
                     lector.close();
                 } catch (IOException e) {
                     e.printStackTrace();

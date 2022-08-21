@@ -3,10 +3,10 @@ package com.example.demo;
 public class EstudianteA extends Estudiante{
     private int NotaA;
     private int NotaB;
+
     public EstudianteA(String carnet, String nombre, String correo, String telefono, String nick, String tipo, int examenes, int quices, int tareas, int proyecto1, int proyecto2, int proyecto3) {
         super(carnet, nombre, correo, telefono, nick, tipo, examenes, quices, tareas, proyecto1, proyecto2, proyecto3);
-        setNotaA(examenes, quices, tareas);
-    }
+        setNotaA(examenes, quices, tareas);}
 
     public String getCarnet() {return Carnet;}
     public void setCarnet(String carnet) {Carnet = carnet;}
@@ -49,6 +49,5 @@ public class EstudianteA extends Estudiante{
         NotaA = (examenes + quices + tareas) / 3;}
 
     public int getNotaB() {return NotaB;}
-    public void setNotaB(){
-        NotaB = 0;}
+    public void setNotaB(){NotaB = 0;}
 }
