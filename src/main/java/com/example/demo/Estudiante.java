@@ -13,25 +13,9 @@ public class Estudiante {
     protected int Proyecto1;
     protected int Proyecto2;
     protected int Proyecto3;
-    protected int NotaFinalA;
-    protected int NotaFinalB;
-    protected int NotaFinalP;
+    protected int NotaFinal;
 
-    public Estudiante(String carnet,
-                      String nombre,
-                      String correo,
-                      String telefono,
-                      String nick,
-                      String tipo,
-                      int examenes,
-                      int quices,
-                      int tareas,
-                      int proyecto1,
-                      int proyecto2,
-                      int proyecto3,
-                      int notaFinalA,
-                      int notaFinalB,
-                      int notaFinalP) {
+    public Estudiante(String carnet, String nombre, String correo, String telefono, String nick, String tipo, int examenes, int quices, int tareas, int proyecto1, int proyecto2, int proyecto3) {
         Carnet = carnet;
         Nombre = nombre;
         Correo = correo;
@@ -44,9 +28,8 @@ public class Estudiante {
         Proyecto1 = proyecto1;
         Proyecto2 = proyecto2;
         Proyecto3 = proyecto3;
-        NotaFinalA = notaFinalA;
-        NotaFinalB = notaFinalB;
-        NotaFinalP = notaFinalP;
+        setNotaFinal();
+        NotaFinal = getNotaFinal();
     }
 
     public String getCarnet() {return Carnet;}
@@ -85,16 +68,9 @@ public class Estudiante {
     public int getProyecto3() {return Proyecto3;}
     public void setProyecto3(int proyecto3) {Proyecto3 = proyecto3;}
 
-    public int getNotaFinalA() {return NotaFinalA;}
-    public void calcNotaFinalA(int examenes, int quices, int tareas) {
-        NotaFinalA = (examenes + quices + tareas) / 3;}
+    public int getNotaFinal(){ return NotaFinal;}
+    public void setNotaFinal() {NotaFinal = (getExamenes() + getQuices() + getTareas() + getProyecto1() + getProyecto2() + getProyecto3()) / 6;}
 
-    public int getNotaFinalB() {return NotaFinalB;}
-    public void calcNotaFinalB(int proyecto1, int proyecto2, int proyecto3) {
-        NotaFinalB = (proyecto1 + proyecto2 + proyecto3) / 3;}
 
-    public int getNotaFinalP() {return NotaFinalP;}
-    public void calcNotaFinalP(int examenes, int quices, int tareas, int proyecto1, int proyecto2, int proyecto3){
-        NotaFinalP = (examenes + quices + tareas + proyecto1 + proyecto2 + proyecto3) / 6;}
 }
 

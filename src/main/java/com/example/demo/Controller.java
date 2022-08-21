@@ -47,11 +47,11 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Estudiante, String> Proyecto3;
     @FXML
-    private TableColumn<Estudiante, String> NotaFinalA;
+    private TableColumn<Estudiante, String> NotaA;
     @FXML
-    private TableColumn<Estudiante, String> NotaFinalB;
+    private TableColumn<Estudiante, String> NotaB;
     @FXML
-    private TableColumn<Estudiante, String> NotaFinalP;
+    private TableColumn<Estudiante, String> NotaFinal;
 
 
     public void SearchButtonEvent(ActionEvent event){
@@ -65,7 +65,7 @@ public class Controller implements Initializable {
             String path = (archivoselec.getAbsolutePath());
 
             BufferedReader lector = null;
-            String linea = "";
+            String linea;
 
             try {
 
@@ -88,18 +88,46 @@ public class Controller implements Initializable {
                             Integer.parseInt(valores[8]),
                             Integer.parseInt(valores[9]),
                             Integer.parseInt(valores[10]),
-                            Integer.parseInt(valores[11]),
-                            0,
-                            0,
-                            0);
+                            Integer.parseInt(valores[11]));
 
                     for(String indice : valores) {
                         System.out.printf("%-30s", indice); // printf es un metodo sobrecargado de la clase PrintStream
                         }
 
-                    list.add(E);
-                    TablaNotas.setItems(list);
+                    if (valores[5].equals("A")) {
+                        EstudianteA EA = new EstudianteA(
+                                E.getCarnet(),
+                                E.getNombre(),
+                                E.getCorreo(),
+                                E.getTelefono(),
+                                E.getNick(),
+                                E.getTipo(),
+                                E.getExamenes(),
+                                E.getQuices(),
+                                E.getTareas(),
+                                E.getProyecto1(),
+                                E.getProyecto2(),
+                                E.getProyecto3());
+                        list.add(EA);
+                    }
+                    else {
+                        EstudianteB EB = new EstudianteB(
+                                E.getCarnet(),
+                                E.getNombre(),
+                                E.getCorreo(),
+                                E.getTelefono(),
+                                E.getNick(),
+                                E.getTipo(),
+                                E.getExamenes(),
+                                E.getQuices(),
+                                E.getTareas(),
+                                E.getProyecto1(),
+                                E.getProyecto2(),
+                                E.getProyecto3());
+                        list.add(EB);
+                    }
 
+                    TablaNotas.setItems(list);
                     System.out.println();
                 }
             }
@@ -133,8 +161,8 @@ public class Controller implements Initializable {
         Proyecto1.setCellValueFactory(new PropertyValueFactory<>("Proyecto1"));
         Proyecto2.setCellValueFactory(new PropertyValueFactory<>("Proyecto2"));
         Proyecto3.setCellValueFactory(new PropertyValueFactory<>("Proyecto3"));
-        NotaFinalA.setCellValueFactory(new PropertyValueFactory<>("NotaFinalA"));
-        NotaFinalB.setCellValueFactory(new PropertyValueFactory<>("NotaFinalB"));
-        NotaFinalP.setCellValueFactory(new PropertyValueFactory<>("NotaFinalP"));
+        NotaA.setCellValueFactory(new PropertyValueFactory<>("NotaA"));
+        NotaB.setCellValueFactory(new PropertyValueFactory<>("NotaB"));
+        NotaFinal.setCellValueFactory(new PropertyValueFactory<>("NotaFinal"));
     }
 }

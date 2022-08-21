@@ -29,9 +29,9 @@
             <TableColumn fx:id="Proyecto1" prefWidth="75.0" text="Proyecto 1" />
             <TableColumn fx:id="Proyecto2" prefWidth="75.0" text="Poyecto 2" />
             <TableColumn fx:id="Proyecto3" prefWidth="75.0" text="Proyecto 3" />
-            <TableColumn fx:id="NotaFinalA" prefWidth="75.0" text="NotaA" />
-            <TableColumn fx:id="NotaFinalB" prefWidth="75.0" text="NotaB" />
-            <TableColumn fx:id="NotaFinalP" prefWidth="75.0" text="Nota Final" />
+            <TableColumn fx:id="NotaA" prefWidth="75.0" text="NotaA" />
+            <TableColumn fx:id="NotaB" prefWidth="75.0" text="NotaB" />
+            <TableColumn fx:id="NotaFinal" prefWidth="75.0" text="Nota Final" />
         </columns>
       </TableView>
    </children>
