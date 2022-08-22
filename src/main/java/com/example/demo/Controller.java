@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {      //se implementa la interfaz "Initializable" a la clase controlador
-                                                        //Las interfaces son una manera además de las clases abstractas de lograr la abstracción en java
     @FXML
     private ListView Archivos;
     @FXML
@@ -55,13 +54,13 @@ public class Controller implements Initializable {      //se implementa la inter
 
     public void SearchButtonEvent(){
         FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File("C:\\Users\\mavic\\Desktop\\Marco\\Datos\\Tarea extra clase\\Archivos CSV"));
-        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv"));
+        fc.setInitialDirectory(new File("C:\\Users\\mavic\\Desktop\\Marco\\Datos\\Tarea extra clase\\Archivos CSV")); // Abre el seleccionador de archivos en un lugar especifico
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivos CSV", "*.csv")); // Filtra el tipo de archivo a ser seleccionado
         File archivoselec = fc.showOpenDialog(null);
 
-        if (archivoselec != null) {
+        if (archivoselec != null) {  // si se selecciona un archivo
             Archivos.getItems().add(archivoselec.getName());
-            String path = (archivoselec.getAbsolutePath());
+            String path = (archivoselec.getAbsolutePath());  // Obtiene la direccion de memoria del archivo cargado y se almacena en la variable path
 
             BufferedReader lector = null;
             String linea;
@@ -69,23 +68,35 @@ public class Controller implements Initializable {      //se implementa la inter
 
             try {
 
-                lector = new BufferedReader(new FileReader(path));
+                lector = new BufferedReader(new FileReader(path)); // Hace un lector para leer el archivo en la direccion de memoria especificada
                 ObservableList<Estudiante> list = FXCollections.observableArrayList();
 
-                while ((linea = lector.readLine()) != null){
+                while ((linea = lector.readLine()) != null){  // lee el archivo mientras la linea de texto exista
 
                     if (numlinea == 1){
-                        String[] valores = linea.split(";");
+                        String[] valores = linea.split(";"); // crea un arreglo de strings a partir de las lineas del archivo
 
-                        Estudiante E = new Estudiante(valores[0], valores[1], valores[2], valores[3], valores[4], valores[5], Integer.parseInt(valores[6]), Integer.parseInt(valores[7]), Integer.parseInt(valores[8]), Integer.parseInt(valores[9]), Integer.parseInt(valores[10]), Integer.parseInt(valores[11]));
-                        list.add(E.TipoEstudiante(valores[5]));
+                        // Crea una INSTANCIA de la clase estudiante
+                        Estudiante E = new Estudiante(valores[0],
+                                valores[1],
+                                valores[2],
+                                valores[3],
+                                valores[4],
+                                valores[5],
+                                Integer.parseInt(valores[6]),
+                                Integer.parseInt(valores[7]),
+                                Integer.parseInt(valores[8]),
+                                Integer.parseInt(valores[9]),
+                                Integer.parseInt(valores[10]),
+                                Integer.parseInt(valores[11]));
+                        list.add(E.TipoEstudiante(valores[5])); //Toda la logica del objeto se maneja dentro de la clase al estar encapsulada y logra manejar las subclases de la clase Estudiante como una sola
 
-                        for(String indice : valores) {System.out.printf("%-30s", indice);} // printf es un metodo sobrecargado de la clase PrintStream
+                        for(String indice : valores) {System.out.printf("%-30s", indice);} // printf es un metodo SOBRECARGADO de la clase PrintStream para verificar el archivo leido en consola
 
                         TablaNotas.setItems(list);
                         System.out.println();
                     }
-                    else {numlinea ++;}
+                    else {numlinea ++;} //ignora la primera linea del archivo y evita crear un objeto estudiante a partir de ella lo cual resultaría en un error
                 }
 
             }
@@ -102,12 +113,13 @@ public class Controller implements Initializable {      //se implementa la inter
             }
         }
         else {
-            System.out.println("Archivo Invalido");
+            System.out.println("Archivo Invalido"); // En caso de alguna forma cargar un archivo no csv
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Muestra los atributos del objeto EstudianteA/EstudianteB en las columnas de la tabla
         Carnet.setCellValueFactory(new PropertyValueFactory<>("Carnet"));
         Nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
         Correo.setCellValueFactory(new PropertyValueFactory<>("Correo"));

@@ -1,7 +1,8 @@
 package com.example.demo;
 
-public class Estudiante {
-    protected String  Carnet;
+public class Estudiante { //La clase Estudiante es una ABSTRACCIÓN del concepto de un estudiante del curso
+    // Se proegen los atributos de la clase con objetivo de encapsularla, de manera que la unica forma de accederlos o modificarlos sea atravez de un metodo controlador
+    protected String  Carnet; //El atributo esta protegido, no privado ya que se desea acceder en clases heredadas
     protected String Nombre;
     protected String Correo;
     protected String Telefono;
@@ -15,7 +16,19 @@ public class Estudiante {
     protected int Proyecto3;
     protected int NotaFinal;
 
-    public Estudiante(String carnet, String nombre, String correo, String telefono, String nick, String tipo, int examenes, int quices, int tareas, int proyecto1, int proyecto2, int proyecto3) {
+    public Estudiante(String carnet,
+                      String nombre,
+                      String correo,
+                      String telefono,
+                      String nick,
+                      String tipo,
+                      int examenes,
+                      int quices,
+                      int tareas,
+                      int proyecto1,
+                      int proyecto2,
+                      int proyecto3)
+    {
         setCarnet(carnet);
         setNombre(nombre);
         setCorreo(correo);
@@ -33,6 +46,7 @@ public class Estudiante {
 
     }
 
+    // Se definen los metodos de la clase Estudiante
     public String getCarnet() {return Carnet;}
     public void setCarnet(String carnet) {Carnet = carnet;}
 
@@ -72,7 +86,7 @@ public class Estudiante {
     public int getNotaFinal(){ return NotaFinal;}
     public void setNotaFinal() {NotaFinal = (getExamenes() + getQuices() + getTareas() + getProyecto1() + getProyecto2() + getProyecto3()) / 6;}
 
-    public Estudiante TipoEstudiante(String tipo) {
+    public Estudiante TipoEstudiante(String tipo) { // Permite el POLIMORFISMO al tratar a las subclases EstudianteA y EstudianteB como una misma
         if (tipo.equals("A")){
             return new EstudianteA(
                     getCarnet(),

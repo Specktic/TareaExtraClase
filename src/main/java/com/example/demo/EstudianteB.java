@@ -1,12 +1,37 @@
 package com.example.demo;
 
-public class EstudianteB extends Estudiante {
+public class EstudianteB extends Estudiante { //La subclase EstudianteB HEREDA de la superclase Estudiante
     private int NotaA;
     private int NotaB;
 
-    public EstudianteB(String carnet, String nombre, String correo, String telefono, String nick, String tipo, int examenes, int quices, int tareas, int proyecto1, int proyecto2, int proyecto3) {
-        super(carnet, nombre, correo, telefono, nick, tipo, examenes, quices, tareas, proyecto1, proyecto2, proyecto3);
-        setNotaB(proyecto1, proyecto2, proyecto3);}
+    public EstudianteB(String carnet,
+                       String nombre,
+                       String correo,
+                       String telefono,
+                       String nick,
+                       String tipo,
+                       int examenes,
+                       int quices,
+                       int tareas,
+                       int proyecto1,
+                       int proyecto2,
+                       int proyecto3)
+    {
+        super(carnet,
+                nombre,
+                correo,
+                telefono,
+                nick,
+                tipo,
+                examenes,
+                quices,
+                tareas,
+                proyecto1,
+                proyecto2,
+                proyecto3);
+        setNotaB(proyecto1, proyecto2, proyecto3);
+        setNotaA();
+    }
 
     public String getCarnet() {return Carnet;}
     public void setCarnet(String carnet) {Carnet = carnet;}
@@ -44,6 +69,7 @@ public class EstudianteB extends Estudiante {
     public int getProyecto3() {return Proyecto3;}
     public void setProyecto3(int proyecto3) {Proyecto3 = proyecto3;}
 
+    // Se hace SOBREESCRITURA de los getters y setters del atributo NotaFinal
     public int getNotaA() {return NotaA;}
     public void setNotaA() {NotaA = 0;}
 
